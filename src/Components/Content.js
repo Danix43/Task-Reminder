@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Controller from '../Logic/Controller'
 
 import Button from './Button'
-import ViewTaskModal from './ViewTask/ViewTaskModal'
+import ViewTask from './ViewTask/ViewTask'
 
 const controller = new Controller()
 
@@ -26,49 +26,54 @@ const Container = styled.div`
     filter: drop-shadow(0px 12px 15px rgba(0, 0, 0, 0.25));
 `
 
-const openModal = function (elemTitle) {
-    const task = controller.findTaskByTitle(elemTitle)
-}
-
-const toggleList = function () {
-    const containerTasks = document.querySelector('#tasks')
-    containerTasks.style.display = 'none' ? '' : 'none'
-
-    const containerCreateTask = document.querySelector('#create-task')
-    containerCreateTask.style.display = 'none' ? '' : 'none'
-}
-
 function Content() {
+    // reading task
     const [readTask, isReadingTask] = useState(false)
     const [taskObj, setTaskObj] = useState({})
 
+    // writing task
+    const [createTask, isCreatingTask] = useState(false)
+
+
+    // write control statetements were
+    let mainContent;
+    if (!readTask && !createTask) {
+        mainContent = <>
+            <Container id='tasks'>
+                {controller.taskList.map((elm, idx) => {
+                    return <Button key={idx} color={elm.color} onClick={() => {
+                        isReadingTask(true)
+                        setTaskObj({
+                            title: elm.title,
+                            description: elm.description,
+                            color: elm.color
+                        })
+                    }}>{elm.title}</Button>
+                })}
+            </Container>
+
+            <Container id='create-task'>
+                <Button onClick={() => isCreatingTask(true)} color='red'>Press here to add a new task</Button>
+            </Container>
+        </>
+    } else if (readTask && !createTask) {
+        mainContent = <>
+            <ViewTask title={taskObj.title} description={taskObj.description} color={taskObj.color} buttonFunc={() => isReadingTask(false)} />
+        </>
+    } else if (!readTask && createTask) {
+        mainContent = <>
+            <h1 onClick={() => isCreatingTask(false)}>Create Task Screen</h1>
+        </>
+    } else {
+        mainContent = <>
+            <h1>Condition not found</h1>
+        </>
+    }
+
+
     return (
         <div className='container'>
-            {!readTask ?
-                <>
-                    <Container id='tasks'>
-                        {controller.taskList.map((elm, idx) => {
-                            return <Button key={idx} color={elm.color} onClick={() => {
-                                openModal(elm.title)
-                                isReadingTask(true)
-                                setTaskObj({
-                                    title: elm.title,
-                                    description: elm.description,
-                                    color: elm.color
-                                })
-                            }}>{elm.title}</Button>
-                        })}
-                    </Container>
-
-                    <Container id='create-task'>
-                        <Button color='red'>Press here to add a new task</Button>
-                    </Container>
-                </>
-                : <>
-                    <ViewTaskModal title={taskObj.title} description={taskObj.description} color={taskObj.color} buttonFunc={() => isReadingTask(false)} />
-                </>
-            }
-
+            {mainContent}
         </div>
     )
 }
