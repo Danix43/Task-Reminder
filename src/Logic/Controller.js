@@ -7,7 +7,11 @@ class Controller {
     }
 
     addNewTask(title, description, color) {
-
+        this.taskList.push({
+            title: title,
+            description: description,
+            color: color
+        })
     }
 
     findTaskByTitle(title) {

@@ -63,7 +63,7 @@ function Content() {
         </>
     } else if (!readTask && createTask) {
         mainContent = <>
-            <CreateTask onClick={() => isCreatingTask(false)}></CreateTask>
+            <CreateTask buttonFunc={() => isCreatingTask(false)} controllerIns={controller} />
         </>
     } else {
         // maybe create an error modal
