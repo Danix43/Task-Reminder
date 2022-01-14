@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Controller from '../Logic/Controller'
 
 import Button from './Button'
+import CreateTask from './CreateTask/CreateTask'
 import ViewTask from './ViewTask/ViewTask'
 
 const controller = new Controller()
@@ -62,9 +63,10 @@ function Content() {
         </>
     } else if (!readTask && createTask) {
         mainContent = <>
-            <h1 onClick={() => isCreatingTask(false)}>Create Task Screen</h1>
+            <CreateTask onClick={() => isCreatingTask(false)}></CreateTask>
         </>
     } else {
+        // maybe create an error modal
         mainContent = <>
             <h1>Condition not found</h1>
         </>

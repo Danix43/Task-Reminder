@@ -1,0 +1,19 @@
+.styledInput-root {
+    display: flex;
+    flex-direction: column;
+
+    border-left: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+}
+
+.styledInput-title {
+    align-self: flex-start;
+
+    margin-top: 0;
+}
+
+#styledInput-input, :focus {
+    font-family: Oxygen Mono, 'Courier New', Courier, monospace;
+
+    border: none;
+}
