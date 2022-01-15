@@ -3,9 +3,16 @@ import AccentButton from '../Button';
 
 import './ViewTask.css'
 
+const closeTask = (buttonFunc, controller) => {
+    const taskTitle = document.querySelector('.viewTask-title').textContent
+
+    controller.deleteTask(taskTitle)
+
+    buttonFunc()
+}
 
 function ViewTaskModal(props) {
-    const { title, description, color, buttonFunc } = props
+    const { title, description, color, buttonFunc, controllerIns } = props
 
     return (
         <div className='viewTask-container'>
@@ -13,7 +20,7 @@ function ViewTaskModal(props) {
             <div className='viewTask-color' style={{ backgroundColor: color }} />
             <p className='viewTask-description'>{description}</p>
 
-            <AccentButton onClick={buttonFunc} color='#8BF271'>Complete task</AccentButton>
+            <AccentButton onClick={() => closeTask(buttonFunc, controllerIns)} color='#8BF271'>Complete task</AccentButton>
         </div>
     )
 }

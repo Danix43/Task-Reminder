@@ -59,7 +59,7 @@ function Content() {
         </>
     } else if (readTask && !createTask) {
         mainContent = <>
-            <ViewTask title={taskObj.title} description={taskObj.description} color={taskObj.color} buttonFunc={() => isReadingTask(false)} />
+            <ViewTask title={taskObj.title} description={taskObj.description} color={taskObj.color} buttonFunc={() => isReadingTask(false)} controllerIns={controller} />
         </>
     } else if (!readTask && createTask) {
         mainContent = <>

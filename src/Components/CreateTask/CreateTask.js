@@ -5,7 +5,17 @@ import Button from '../Button'
 
 const saveTask = (buttonFunc, controller) => {
     const titleInput = document.querySelector('#createTask-titleInput > #styledInput-input').value
-    const descriptionInput = document.querySelector('#createTask-titleInput > #styledInput-input').value
+    const descriptionInput = document.querySelector('#createTask-descriptionInput > #styledInput-input').value
+
+    if (titleInput === '') {
+        alert('Please type something inside the title box')
+        return
+    }
+
+    if (descriptionInput === '') {
+        alert('Please type something inside the description box')
+        return
+    }
 
     // save to the controller / storage
     controller.addNewTask(titleInput, descriptionInput, '#00ff00')
