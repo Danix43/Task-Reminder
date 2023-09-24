@@ -6,6 +6,10 @@ A simple way of remembering the things that matter to you! (Well, maybe not, thi
 
 A sample and "meet on all roads" type of project, build using React. His purpose is not of being a production ready application, but simply to get some practice using React and styled-components. Also some type of "separation of concerns" seen on [MVP pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) is present, but not as in a fully fledged application.
 
+## Demo
+
+Can be seen live [here](https://danix43.github.io/Task-Reminder/)
+
 ## Instalation
 
 As simple as running a few commands inside the terminal:
